@@ -14,6 +14,9 @@ export class ProductListComponent {
     window.alert('The product has been shared!');
   }
 
+  onNotify() {
+    window.alert('The product has been notified!');
+  }
 }
 
 /*
