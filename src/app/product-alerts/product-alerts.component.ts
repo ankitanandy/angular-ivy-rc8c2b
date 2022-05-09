@@ -7,7 +7,6 @@ import { Product } from '../products';
 })
 export class ProductAlertsComponent implements OnInit {
   @Input() product: Product;
-  @Input() price: number;
   @Output() notify = new EventEmitter();
 
   constructor() {}
