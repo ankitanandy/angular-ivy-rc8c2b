@@ -10,7 +10,6 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  products = this.productService.getProducts();
   product: Product;
   constructor(
     private route: ActivatedRoute,
@@ -23,9 +22,13 @@ export class ProductDetailsComponent implements OnInit {
     window.alert('Your product has been added to the cart!');
   }
 
+  getProduct(id: number) {
+    this.productService.getProduct(id).subscribe((p) => (this.product = p));
+  }
+
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('productId'));
-    //this.product = this.products.find((p) => p.id === productIdFromRoute);
+    this.getProduct(productIdFromRoute);
   }
 }
