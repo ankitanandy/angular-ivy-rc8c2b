@@ -1,4 +1,4 @@
-export interface Shipping{
+export interface Shipping {
   type: string;
   price: number;
 }
