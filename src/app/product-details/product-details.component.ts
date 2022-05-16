@@ -22,13 +22,13 @@ export class ProductDetailsComponent implements OnInit {
     window.alert('Your product has been added to the cart!');
   }
 
-  getProduct(id: number) {
-    this.productService.getProduct(id).subscribe((p) => (this.product = p));
-  }
-
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('productId'));
-    this.getProduct(productIdFromRoute);
+    this.productService
+      .getProducts()
+      .subscribe(
+        (p) => (this.product = p.find((x) => x.id === productIdFromRoute))
+      );
   }
 }

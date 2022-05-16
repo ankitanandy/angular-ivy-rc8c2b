@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -6,10 +6,13 @@ import { ProductService } from '../product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent {
-  products = this.productService.getProducts();
+export class ProductListComponent implements OnInit {
+  products;
 
   constructor(private productService: ProductService) {}
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe((p) => (this.products = p));
+  }
   share() {
     window.alert('The product has been shared!');
   }

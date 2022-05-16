@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Shipping } from './shipping';
 import { Product } from './products';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class CartService {
     return this.items;
   }
 
-  getShippingPrices() {
+  getShippingPrices():Observable<Shipping[]>{
     return this.httpClient.get<Shipping[]>('/assets/shipping.json');
   }
 }
